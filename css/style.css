@@ -1,0 +1,289 @@
+:root {
+    --primary-color: #F4A261;
+    --secondary-color: #2A9D8F;
+    --background-color: #FFF8F0;
+    --text-color: #264653;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --accent-color: #E76F51;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Caveat', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(244, 162, 97, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(42, 157, 143, 0.1) 0%, transparent 20%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+.container::before {
+    display: none;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+h1 {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 4.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    transform: rotate(-2deg);
+}
+
+h1::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    right: -15px;
+    bottom: -10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 15px;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.subtitle {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    font-weight: 400;
+    transform: rotate(1deg);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 3px solid var(--primary-color);
+    border-image: none;
+    box-shadow: var(--card-shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: none;
+    border-radius: 22px;
+    opacity: 0.5;
+    z-index: -1;
+    animation: none;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(244, 162, 97, 0.1) 0%, 
+        rgba(42, 157, 143, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+.card i {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards 0.3s;
+    position: relative;
+}
+
+.card i::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card h2 {
+    font-family: 'Gochi Hand', cursive;
+    color: var(--secondary-color);
+    margin-bottom: 0.8rem;
+    font-size: 2.2rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards 0.6s;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    transform: rotate(-1deg);
+}
+
+.card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover h2::after {
+    transform: scaleX(1);
+}
+
+.card p {
+    font-family: 'Caveat', cursive;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards 0.9s;
+    font-weight: 400;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes drawBorder {
+    0% {
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 3.4rem;
+        transform: rotate(-1deg);
+    }
+    
+    .subtitle {
+        font-size: 2rem;
+        transform: rotate(0.5deg);
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+        border: none;
+        border-image: none;
+        box-shadow: 0 4px 12px rgba(244, 162, 97, 0.2);
+    }
+
+    .card::before {
+        display: none;
+    }
+
+    .card i {
+        font-size: 3.2rem;
+    }
+
+    .card h2 {
+        font-size: 2.4rem;
+        transform: rotate(-0.5deg);
+    }
+
+    .card p {
+        font-size: 1.6rem;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+    }
+} 
